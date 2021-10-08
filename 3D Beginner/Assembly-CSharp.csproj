@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\GameEnding.cs" />
     <Compile Include="Assets\Scripts\Observer.cs" />
+    <Compile Include="Assets\Scripts\WaypointPatrol.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\3DBeginner_Third-PartyNotice.txt" />
