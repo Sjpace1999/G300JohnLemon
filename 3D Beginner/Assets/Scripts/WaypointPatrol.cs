@@ -9,10 +9,11 @@ public class WaypointPatrol : MonoBehaviour
     public Transform[] waypoints;
 
     int m_CurrentWaypointIndex;
+    int propossedWaypoint;
     // Start is called before the first frame update
     void Start()
     {
-        navMeshAgent.SetDestination(waypoints[0].position);
+        navMeshAgent.SetDestination(waypoints[(int)Random.Range(0, waypoints.Length)].position);
     }
 
     // Update is called once per frame
@@ -20,7 +21,11 @@ public class WaypointPatrol : MonoBehaviour
     {
         if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
         {
-            m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
+            do
+            {
+                propossedWaypoint = (int)Random.Range(0, waypoints.Length);
+            } while (propossedWaypoint == m_CurrentWaypointIndex);
+            m_CurrentWaypointIndex = propossedWaypoint;
             navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
         }
     }
