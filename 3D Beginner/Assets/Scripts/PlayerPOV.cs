@@ -7,11 +7,15 @@ public class PlayerPOV : MonoBehaviour
     public GameEnding gameEnding;
 
     bool ghostWithinRange=false;
+    GameObject ghost;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Ghost"))
         {
+            //https://answers.unity.com/questions/278355/how-can-i-access-a-colliders-gameobject-in-script.html
+            ghost = other.gameObject;
+            
             gameEnding.InstructionsTrue();
             ghostWithinRange = true;
         }
@@ -21,6 +25,7 @@ public class PlayerPOV : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ghost"))
         {
+            ghost = null;
             gameEnding.InstructionsFalse();
             ghostWithinRange = false;
         }
@@ -33,7 +38,11 @@ public class PlayerPOV : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-
+                Destroy(ghost);
+                ghost = null;
+                gameEnding.InstructionsFalse();
+                ghostWithinRange = false;
+                gameEnding.incrementCaptured();
             }
         }
     }

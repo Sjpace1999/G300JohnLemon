@@ -31,7 +31,7 @@ public class GameEnding : MonoBehaviour
     {
         if (other.gameObject == player)
         {
-            m_IsPlayerAtExit = true;
+            //m_IsPlayerAtExit = true;
         }
     }
     public void CaughtPlayer()
@@ -43,6 +43,10 @@ public class GameEnding : MonoBehaviour
     {
         count++;
         numCaptured.text = "Captured: "+count;
+        if (count>=4)
+        {
+            m_IsPlayerAtExit = true;
+        }
     }
 
     public void InstructionsTrue()
