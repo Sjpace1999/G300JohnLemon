@@ -12,6 +12,7 @@ public class GameEnding : MonoBehaviour
     public CanvasGroup exitBackgroundImageCanvasGroup;
     public CanvasGroup caughtBackgroundImageCanvasGroup;
     public Text numCaptured;
+    public Text pressButton;
     public AudioSource exitAudio;
     public AudioSource caughtAudio;
 
@@ -20,6 +21,11 @@ public class GameEnding : MonoBehaviour
     float m_Timer;
     bool m_HasAudioPlayed;
     int count=0;
+
+    void Start()
+    {
+        pressButton.enabled = false;
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -37,6 +43,16 @@ public class GameEnding : MonoBehaviour
     {
         count++;
         numCaptured.text = "Captured: "+count;
+    }
+
+    public void InstructionsTrue()
+    {
+        pressButton.enabled = true;
+    }
+
+    public void InstructionsFalse()
+    {
+        pressButton.enabled = false;
     }
 
     void Update()
