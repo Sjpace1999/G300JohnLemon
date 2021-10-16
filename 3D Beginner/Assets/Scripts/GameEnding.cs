@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class GameEnding : MonoBehaviour
     public CanvasGroup caughtBackgroundImageCanvasGroup;
     public Text numCaptured;
     public Text pressButton;
+    public Text timerText;
+    public Text highScore;
     public AudioSource exitAudio;
     public AudioSource caughtAudio;
 
@@ -21,6 +24,9 @@ public class GameEnding : MonoBehaviour
     float m_Timer;
     bool m_HasAudioPlayed;
     int count=0;
+    float timer;
+    float mins;
+    float secs;
 
     void Start()
     {
@@ -69,6 +75,12 @@ public class GameEnding : MonoBehaviour
         {
             EndLevel(caughtBackgroundImageCanvasGroup, true, caughtAudio);
         }
+        //https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/#timer
+        timer += Time.deltaTime;
+        mins = Mathf.FloorToInt(timer / 60);
+        secs = Mathf.FloorToInt(timer % 60);
+
+        timerText.text = string.Format("{0:00}:{1:00}", mins, secs); ;
     }
 
     void EndLevel(CanvasGroup imageCanvasGroup, bool doRestart, AudioSource audioSource)
