@@ -27,10 +27,13 @@ public class GameEnding : MonoBehaviour
     float timer;
     float mins;
     float secs;
+    float score;
 
     void Start()
     {
         pressButton.enabled = false;
+        score = PlayerPrefs.GetFloat("highscore", 0f);
+        highScore.text = string.Format("HighScore {0:00}:{1:00}", Mathf.FloorToInt(score / 60), Mathf.FloorToInt(score % 60));
     }
 
     void OnTriggerEnter(Collider other)
@@ -52,6 +55,13 @@ public class GameEnding : MonoBehaviour
         if (count>=4)
         {
             m_IsPlayerAtExit = true;
+            if (timer < score||score==0f)
+            {
+                score = timer;
+                highScore.text = string.Format("HighScore {0:00}:{1:00}", Mathf.FloorToInt(score / 60), Mathf.FloorToInt(score % 60));
+                PlayerPrefs.SetFloat("highscore", score);
+                PlayerPrefs.Save();
+            }
         }
     }
 
@@ -80,7 +90,7 @@ public class GameEnding : MonoBehaviour
         mins = Mathf.FloorToInt(timer / 60);
         secs = Mathf.FloorToInt(timer % 60);
 
-        timerText.text = string.Format("{0:00}:{1:00}", mins, secs); ;
+        timerText.text = string.Format("{0:00}:{1:00}", mins, secs);
     }
 
     void EndLevel(CanvasGroup imageCanvasGroup, bool doRestart, AudioSource audioSource)
