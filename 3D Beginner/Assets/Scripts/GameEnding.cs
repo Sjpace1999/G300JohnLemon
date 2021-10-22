@@ -85,7 +85,7 @@ public class GameEnding : MonoBehaviour
 
         if (m_IsPlayerAtExit)
         {
-            EndLevel(exitBackgroundImageCanvasGroup, false, exitAudio);
+            EndLevel(exitBackgroundImageCanvasGroup, true, exitAudio);
         }
         else if (m_IsPlayerCaught)
         {
