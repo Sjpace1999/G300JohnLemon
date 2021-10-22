@@ -52,7 +52,7 @@ public class GameEnding : MonoBehaviour
     {
         count++;
         numCaptured.text = "Captured: "+count;
-        if (count>=4)
+        if (count>=14)
         {
             m_IsPlayerAtExit = true;
             if (timer < score||score==0f)
