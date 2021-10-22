@@ -16,6 +16,7 @@ public class GameEnding : MonoBehaviour
     public Text pressButton;
     public Text timerText;
     public Text highScore;
+    public Text instructions;
     public AudioSource exitAudio;
     public AudioSource caughtAudio;
 
@@ -77,6 +78,11 @@ public class GameEnding : MonoBehaviour
 
     void Update()
     {
+        if (timer >= 4)
+        {
+            instructions.enabled = false;
+        }
+
         if (m_IsPlayerAtExit)
         {
             EndLevel(exitBackgroundImageCanvasGroup, false, exitAudio);
